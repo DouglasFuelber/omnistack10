@@ -9,6 +9,12 @@ module.exports = {
         return response.json(devs);
     },
 
+    async detail(request, response) {
+        const { github_username } = request.params;
+        const dev = await Dev.findOne({ github_username });
+        return response.json(dev);
+    },
+
     async create(request, response) {
         const { github_username, techs, latitude, longitude } = request.body;
 
