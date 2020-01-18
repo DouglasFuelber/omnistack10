@@ -42,5 +42,25 @@ module.exports = {
         }
 
         return response.json(dev);
+    },
+
+    async edit(request, response) {
+        const { github_username, bio, name, techs, latitude, longitude } = request.body;
+
+        const techsArray = parseStringAsArray(techs);
+
+        const location = {
+            type: 'Point',
+            coordinates: [longitude, latitude]
+        }
+
+        dev = await Dev.findOneAndUpdate({ github_username }, {
+            bio,
+            name,
+            techs: techsArray,
+            location
+        }, { new: true });
+
+        return response.json(dev);
     }
 }
