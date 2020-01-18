@@ -1,5 +1,6 @@
 const axios = require('axios');
 const Dev = require('../models/Dev');
+const parseStringAsArray = require('../utils/parseStringAsArray');
 
 module.exports = {
 
@@ -17,11 +18,11 @@ module.exports = {
             const apiResponse = await axios.get(`https://api.github.com/users/${github_username}`);
             const { name = login, avatar_url, bio } = apiResponse.data;
 
-            const techsArray = techs.split(',').map(tech => tech.trim());
+            const techsArray = parseStringAsArray(techs);
 
             const location = {
                 type: 'Point',
-                coordinates: [latitude, longitude]
+                coordinates: [longitude, latitude]
             }
 
             dev = await Dev.create({
