@@ -45,7 +45,8 @@ module.exports = {
     },
 
     async edit(request, response) {
-        const { github_username, bio, name, techs, latitude, longitude } = request.body;
+        const { github_username } = request.params;
+        const { bio, name, techs, latitude, longitude } = request.body;
 
         const techsArray = parseStringAsArray(techs);
 

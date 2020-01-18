@@ -7,7 +7,7 @@ const routes = Router();
 routes.get('/devs', DevController.index);
 routes.get('/devs/:github_username', DevController.detail);
 routes.post('/devs', DevController.create);
-routes.put('/devs', DevController.edit);
+routes.put('/devs/:github_username', DevController.edit);
 
 routes.get('/search', SearchController.index);
 
