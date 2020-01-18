@@ -5,7 +5,8 @@ const routes = require('./routes.js');
 const app = express();
 
 mongoose.connect('<connection_string>', {
-    useNewUrlParser: true,
+    useCreateIndex: true,
+    useNewUrlParser: true,    
     useUnifiedTopology: true
 });
 
