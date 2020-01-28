@@ -8,6 +8,8 @@ import './Main.scss'
 
 function App() {
 
+  const [devs, setDevs] = useState([]);
+
   const [github_username, setGithubUsername] = useState('');
   const [techs, setTechs] = useState('');
   const [latitude, setLatitude] = useState('');
@@ -25,6 +27,17 @@ function App() {
     );
   }, []);
 
+  useEffect(() => {
+    const loadDevs = async () => {
+
+      const response = await api.get('/devs');
+      setDevs(response.data);
+
+    }
+
+    loadDevs();
+  }, []);
+
   const handleAddDev = async (e) => {
     e.preventDefault();
 
@@ -35,7 +48,10 @@ function App() {
       longitude
     });
 
-    console.log(response.data)
+    setGithubUsername('');
+    setTechs('');
+
+    setDevs([...devs, response.data]);
   }
 
   return (
@@ -100,42 +116,19 @@ function App() {
 
       <main>
         <ul>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars0.githubusercontent.com/u/15067098?s=460&v=4" alt="Douglas Fuelber" />
-              <div className="user-info">
-                <strong>Douglas Fuelber</strong>
-                <span>ReactJS, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>Full Stack Web Developer</p>
-            <a href="https://github.com/DouglasFuelber">Acessar perfil no GitHub</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars0.githubusercontent.com/u/15067098?s=460&v=4" alt="Douglas Fuelber" />
-              <div className="user-info">
-                <strong>Douglas Fuelber</strong>
-                <span>ReactJS, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>Full Stack Web Developer</p>
-            <a href="https://github.com/DouglasFuelber">Acessar perfil no GitHub</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars0.githubusercontent.com/u/15067098?s=460&v=4" alt="Douglas Fuelber" />
-              <div className="user-info">
-                <strong>Douglas Fuelber</strong>
-                <span>ReactJS, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>Full Stack Web Developer</p>
-            <a href="https://github.com/DouglasFuelber">Acessar perfil no GitHub</a>
-          </li>
+          {devs.map(dev => (
+            <li className="dev-item" key={dev._id}>
+              <header>
+                <img src={dev.avatar_url} alt={dev.name} />
+                <div className="user-info">
+                  <strong>{dev.name}</strong>
+                  <span>{dev.techs.join(', ')}</span>
+                </div>
+              </header>
+              <p>{dev.bio}</p>
+              <a href={`https://github.com/${dev.github_username}`} >Acessar perfil no GitHub</a>
+            </li>
+          ))}         
 
         </ul>
       </main>
