@@ -3,11 +3,12 @@ import React from 'react';
 import './global.css'
 import './App.css'
 import './Sidebar.css'
+import './Main.css'
 
 function App() {
   return (
     <div id="app">
-      
+
       <aside>
         <strong>Cadastrar</strong>
         <form>
@@ -16,7 +17,7 @@ function App() {
             <label htmlFor="github_username">Usuário do GitHub</label>
             <input name="github_username" id="github_username" required />
           </div>
-          
+
           <div className="input-block">
             <label htmlFor="techs">Tecnologias</label>
             <input name="techs" id="techs" required />
@@ -40,7 +41,45 @@ function App() {
       </aside>
 
       <main>
+        <ul>
 
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars0.githubusercontent.com/u/15067098?s=460&v=4" alt="Douglas Fuelber" />
+              <div className="user-info">
+                <strong>Douglas Fuelber</strong>
+                <span>ReactJS, React Native, Node.js</span>
+              </div>
+            </header>
+            <p>Full Stack Web Developer</p>
+            <a href="https://github.com/DouglasFuelber">Acessar perfil no GitHub</a>
+          </li>
+
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars0.githubusercontent.com/u/15067098?s=460&v=4" alt="Douglas Fuelber" />
+              <div className="user-info">
+                <strong>Douglas Fuelber</strong>
+                <span>ReactJS, React Native, Node.js</span>
+              </div>
+            </header>
+            <p>Full Stack Web Developer</p>
+            <a href="https://github.com/DouglasFuelber">Acessar perfil no GitHub</a>
+          </li>
+
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars0.githubusercontent.com/u/15067098?s=460&v=4" alt="Douglas Fuelber" />
+              <div className="user-info">
+                <strong>Douglas Fuelber</strong>
+                <span>ReactJS, React Native, Node.js</span>
+              </div>
+            </header>
+            <p>Full Stack Web Developer</p>
+            <a href="https://github.com/DouglasFuelber">Acessar perfil no GitHub</a>
+          </li>
+
+        </ul>
       </main>
 
     </div>
