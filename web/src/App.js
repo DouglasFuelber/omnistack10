@@ -1,9 +1,9 @@
 import React from 'react';
 
-import './global.css'
-import './App.css'
-import './Sidebar.css'
-import './Main.css'
+import './global.scss'
+import './App.scss'
+import './Sidebar.scss'
+import './Main.scss'
 
 function App() {
   return (
