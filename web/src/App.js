@@ -29,10 +29,8 @@ function App() {
 
   useEffect(() => {
     const loadDevs = async () => {
-
       const response = await api.get('/devs');
       setDevs(response.data);
-
     }
 
     loadDevs();
@@ -128,9 +126,9 @@ function App() {
               <p>{dev.bio}</p>
               <a href={`https://github.com/${dev.github_username}`} >Acessar perfil no GitHub</a>
             </li>
-          ))}         
-
+          ))}
         </ul>
+        {devs.length === 0 ? <strong className="empty-list">Nenhum item cadastrado</strong> : ''}
       </main>
 
     </div>
