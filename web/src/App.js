@@ -28,6 +28,12 @@ function App() {
     setDevs([...devs, response.data]);
   }
 
+  const handleDeleteDev = async (github_username) => {
+    const response = await api.delete(`/devs/${github_username}`);
+
+    setDevs(devs.filter((dev) => dev._id !== response.data._id));
+  }
+
   return (
     <div id="app">
 
@@ -40,7 +46,7 @@ function App() {
 
         <ul>
           {devs.map(dev => (
-            <DevItem key={dev._id} dev={dev} />
+            <DevItem key={dev._id} dev={dev} onDelete={handleDeleteDev} />
           ))}
         </ul>
 

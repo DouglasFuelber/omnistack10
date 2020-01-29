@@ -2,7 +2,7 @@ import React from 'react';
 
 import './styles.scss';
 
-export default ({ dev }) => (
+export default ({ dev, onDelete }) => (
     <li className="dev-item">
         <header>
             <img src={dev.avatar_url} alt={dev.name} />
@@ -12,6 +12,13 @@ export default ({ dev }) => (
             </div>
         </header>
         <p>{dev.bio}</p>
-        <a href={`https://github.com/${dev.github_username}`} >Acessar perfil no GitHub</a>
+        <div className="user-links">
+            <a href={`https://github.com/${dev.github_username}`} >Acessar perfil no GitHub</a>
+            <button
+                className="delete-user"
+                onClick={() => onDelete(dev.github_username)}>
+                Excluir
+            </button>
+        </div>
     </li>
 );

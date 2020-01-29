@@ -40,14 +40,32 @@ li {
             margin: 10px 0;
         }
 
-        a {
-            color: #8e4dff;
-            font-size: 14px;
-            text-decoration: none;
+        .user-links {
+            display: flex;
+            flex-direction: row;
 
-            &:hover {
-                color: #5a2ea6;
+            a {
+                color: #8e4dff;
+                font-size: 14px;
+                text-decoration: none;
+    
+                &:hover {
+                    color: #5a2ea6;
+                }
             }
-        }
+    
+            .delete-user{                
+                background: none;
+                border: none;
+                color: #8e4dff;
+                cursor: pointer;
+                font-size: 14px;
+                margin-left: auto;
+
+                &:hover {
+                    color: #5a2ea6;
+                }
+            }
+        }        
     }
 }
