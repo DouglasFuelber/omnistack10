@@ -6,12 +6,7 @@ module.exports = {
     async index(request, response) {
         const { latitude, longitude, techs } = request.query;
 
-        const techsArray = parseStringAsArray(techs);
-
-        const devs = await Dev.find({
-            techs: {
-                $in: techsArray
-            },
+        let devsQuery = {
             location: {
                 $near: {
                     $geometry: {
@@ -21,7 +16,17 @@ module.exports = {
                     $maxDistance: 10000
                 },
             },
-        });
+        };
+
+        // Filter devs by tech only if is informed
+        if (techs) {
+            const techsArray = parseStringAsArray(techs);
+            devsQuery.techs = {
+                $in: techsArray
+            };
+        }
+
+        const devs = await Dev.find(devsQuery);
 
         return response.json({ devs })
     }
